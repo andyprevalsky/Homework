@@ -1,0 +1,35 @@
+0011 0000 0000 0000 	; x3000 
+
+0101 000 000 1 00000 	; initialize R0 as counter at val 0 
+	
+0010 001 0 0100 1110 	; load register 1 as value at x3050 
+
+0000 010 00000 1001	; if number is 0 then go to check count
+
+0001 000 000 1 00001 	; add one to the count (its now at one)
+
+0001 001 001 0 00 001	; add register 1 value to itself 
+
+0000 010 00000 0011	; if number is 0 then go check the count
+
+0000 001 000000001 	; if number is positive then skip increasing the count and restart again
+
+0001 000 000 1 11111	; subtract one from the count
+
+0000 111 111111011 	; repeat regardless
+
+0001 000 000 1 00000 	; regrab count nzp
+
+0000 010 000000011 	; if count is 0 then send 0001 to x3051
+
+0101 000 000 1 00000 	; set count to 0 so x3051 will get val 0
+
+0011 000 0 0100 0100	; store count x3000c
+
+1111000000100101 	; halt
+
+0001 000 000 1 00001	; add one to count so 1 one will be stored in x3051
+
+0011 000 0 0100 0001	; store count x300f
+
+1111000000100101 	; halt
